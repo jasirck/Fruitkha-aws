@@ -26,6 +26,7 @@ Add prodect
         <div class="card-body">
           <label for="id_category">Prodect Category:</label>
           <select class="inputbox" style='width:150px;' name="category" id="category" placeholder="category">
+            <option value="{{ prodect.category_id }}" selected>{{ prodect.category}}</option>
             {% for category in categories %}
               <option value="{{ category.id }}">{{ category.name }}</option>
             {% endfor %}
@@ -55,37 +56,49 @@ Add prodect
         <div class="card-body">
           <label for="id_variant">Prodect Variant:</label>
           <select class="inputbox" style='width:150px;' name="variant" id="variant" placeholder="variant">
+            <option value="{{ prodect.variant_id }}" selected>{{ prodect.variant}}</option>
             {% for variant in variants %}
               <option value="{{ variant.id }}">{{ variant.variant_name }}</option>
             {% endfor %}
           </select>
         </div>
       </div>
-      <div class="add_card" style='width:300px ; '>
-        <div class="card-body"><p class="placehold">image1</p>
-          {% if prodect.prodect_image1 %} <img class="square-50" src=" {{prodect.prodect_image1.url}}" alt="">{% endif %}
-          <label for="{{prodect.prodect_image1.url}}">Product image1: </label>
-          <input class="inputbox" style='width:300px ;' type="file" align="center" name="image1" id="image1" value="{{ prodect.prodect_image1.url }}">
+      <div class="add_card" style="width: 300px;">
+        <div class="card-body">
+          <p class="placehold">Image 1</p>
+          <div class="image-container">
+            {% if prodect.prodect_image1 %}
+            <img class="uploaded-image" src="{{ prodect.prodect_image1.url }}" alt="Image 1">
+            {% endif %}
+            <input class="inputbox" type="file" name="image1" id="image1">
+          </div>
         </div>
       </div>
+      
       {% if prodect.prodect_image2 %}
-      <div class="add_card" style='width:300px ; '>
-        <div class="card-body"><p class="placehold">image2</p>
-          {% if prodect.prodect_image2 %} <img class="square-50" src=" {{prodect.prodect_image2.url}}" alt="">{% endif %}
-          <label for="{{prodect.prodect_image2.url}}">Product image2: </label>
-          <input class="inputbox" style='width:300px ;' type="file" align="center" name="image2" id="image2" value="{{ prodect.prodect_image2.url }}">
+      <div class="add_card" style="width: 300px;">
+        <div class="card-body">
+          <p class="placehold">Image 2</p>
+          <div class="image-container">
+            <img class="uploaded-image" src="{{ prodect.prodect_image2.url }}" alt="Image 2">
+            <input class="inputbox" type="file" name="image2" id="image2">
+          </div>
         </div>
       </div>
       {% endif %}
+      
       {% if prodect.prodect_image3 %}
-      <div class="add_card" style='width:300px ; '>
-        {% if prodect.prodect_image3 %} <img class="square-50" src=" {{prodect.prodect_image3.url}}" alt="">{% endif %}
-        <div class="card-body"><p class="placehold">image3</p>
-          <label for="{{prodect.prodect_image3.url}}e">Product image3: </label>
-          <input class="inputbox" style='width:300px ;' type="file"  name="image3" id="image3" value="{{ prodect.prodect_image3.url }}">
+      <div class="add_card" style="width: 300px;">
+        <div class="card-body">
+          <p class="placehold">Image 3</p>
+          <div class="image-container">
+            <img class="uploaded-image" src="{{ prodect.prodect_image3.url }}" alt="Image 3">
+            <input class="inputbox" type="file" name="image3" id="image3">
+          </div>
         </div>
       </div>
       {% endif %}
+      
       
 
       <button class="submit"type="submit"  align="center">Submit</button>

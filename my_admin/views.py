@@ -266,12 +266,10 @@ def category(request):
     order_count = order.objects.count()
     if request.method == "POST":
         category_name = request.POST.get("category_name")
-        offer = request.POST.get("offer")
         category_description = request.POST.get("category_description")
         category_image = request.FILES.get("category_image", None)
         category_obj = AdminCategory(
             name=category_name,
-            offer=offer,
             category_description=category_description,
             category_image=category_image,
         )
@@ -312,7 +310,6 @@ def edit_category_page(request, id):
     category = AdminCategory.objects.get(id=id)
     if request.method == "POST":
         category.name = request.POST["category_name"]
-        category.offer = request.POST["offer"]
         category.category_description = request.POST["category_description"]
         if "image1" in request.FILES:
             category.category_image = request.FILES["image1"]
@@ -391,8 +388,9 @@ def edit_prodect_page(request, id):
         prodect.prodect_name = request.POST["prodect_name"]
         category = request.POST.get("category")
         variant = request.POST.get("variant")
-        variant_id = myvariant.objects.get(id=variant)
-        category_id = AdminCategory.objects.get(id=category)
+        print(category,type(category),'cehj,hgkg',variant)
+        variant_id = myvariant.objects.get(id=int(variant))
+        category_id = AdminCategory.objects.get(id=int(category))
         prodect.category = category_id
         prodect.price = request.POST["price"]
         prodect.description = request.POST["description"]

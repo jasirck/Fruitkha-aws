@@ -21828,7 +21828,7 @@ dl li {
   flex-direction: row;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 70px;
+  /* padding-top: 70px; */
 }
 
 .page-body-wrapper.full-page-wrapper {

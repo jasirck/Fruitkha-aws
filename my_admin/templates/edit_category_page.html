@@ -1,13 +1,13 @@
 {% extends "admin_base.html" %}
 {% load static %}
 {% block title %} 
-Add prodect
+Edit Category
 {% endblock %}
 {% block style %} 
 <link rel="stylesheet" href="{% static "assets/css/add.css" %}">
 {% endblock %}
 {% block page_name %} 
-Add prodect
+Edit Category
 {% endblock %}
 {% block content %} 
 <div class='row' >
@@ -16,29 +16,26 @@ Add prodect
       {% csrf_token %}
       <div class="add_card" style='width:500px ;'>
         <div class="card-body" >
-          <select class="inputbox" style='width:500px;' type="text" align="center" name="category_name" id="category_name" value="{{pro.prodect_name}}">
-            <option value="{{ category.name }}">{{ category.name }}</option>
-          </select>
+            <label for="Category_name">Category name: </label>
+            <input class="inputbox" style='width:500px;' type="text" align="center" name="category_name" id="category_name" value="{{category.name}}">
         </div>
       </div>
-      {% comment %} <div class="add_card" style='width:200px ;'>
-        <div class="card-body">
-          <input class="inputbox" style='width:200px ;' type="text" align="center" name="category" id="category" placeholder="Category">
-        </div>
-      </div> {% endcomment %}
       <div class="add_card" style='width:600px ; '>
         <div class="card-body">
+          <label for="Category_name">Description: </label>
           <input class="inputbox" style='width:600px ;' type="text" align="center" name="category_description" id="category_description" value="{{category.category_description}}" >
         </div>
       </div>
-      <div class="add_card" style='width:200px ; '>
+
+       <div class="add_card" style="width: 300px;">
         <div class="card-body">
-          <input class="inputbox" style='width:200px ;' type="text" align="center" name="offer" id="offer" value="{{category.offer}}">
-        </div>
-      </div>
-      <div class="add_card" style='width:300px ; '>
-        <div class="card-body" style='width:300px ; '>
-          <input class="inputbox" style='width:250px ;' type="file" align="center" name="category_image" id="category_image" value="{{category.category_image}}">
+          <p class="placehold">Image 1</p>
+          <div class="image-container">
+            {% if category.category_image %}
+            <img class="uploaded-image" src="{{ category.category_image.url }}" alt="Image 1">
+            {% endif %}
+            <input class="inputbox" type="file" name="image1" id="image1">
+          </div>
         </div>
       </div>
       

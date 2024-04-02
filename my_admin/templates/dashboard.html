@@ -5,68 +5,7 @@ Dashboard
 {% endblock %}
 {% block style %} 
 <link rel="stylesheet" href="{% static "assets/css/main_new.css" %}">
-<script>
-  {% comment %} .card-title {
-    font-size: 24px;
-    font-weight: bold;
-    margin-bottom: 10px;
-  }
 
-  .form-container {
-    width: 300px;
-    margin: 0 auto;
-  }
-
-  .form-container select,
-  .form-container input[type="date"],
-  .form-container button {
-    width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-size: 16px;
-  }
-
-  .form-container button {
-    background-color: #4CAF50;
-    color: white;
-    cursor: pointer;
-  }
-
-  .form-container button:hover {
-    background-color: #45a049;
-  }
-
-  .text-muted {
-    color: #777;
-  }
-
-  .font-weight-light {
-    font-weight: lighter;
-  }
-  .button-container {
-    display: flex;
-    justify-content: center;
-    margin-bottom: 20px;
-}
-
-.button_chart {
-    padding: 10px 20px;
-    margin: 0 10px;
-    background-color: #4CAF50;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-.button_chart:hover {
-    background-color: #45a049;
-} {% endcomment %}
-
-</script>
 {% endblock %}
 {% block page_name %} 
 Dashboard
@@ -121,6 +60,55 @@ Dashboard
       </div>
     </div>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-9 grid-margin stretch-card">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-6">
+            <div class="sales-report-form">
+              <p class="card-title">Sales Reports</p>
+              <form action="sales_report" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <label for="interval" class="text-muted font-weight-light">Choose a time interval:</label>
+                  <input type="hidden" value="fixed" name="filter">
+                  <select name="interval" id="interval" class="form-control">
+                    <option value="day">Day</option>
+                    <option value="week">Week</option>
+                    <option value="month">Month</option>
+                    <option value="year">Year</option>
+                  </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Report</button>
+              </form>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="sales-report-form">
+              <p class="card-title"></p>
+              <form action="sales_report" method="POST">
+                {% csrf_token %}
+                <div class="form-group">
+                  <input type="hidden" value="custom" name="filter">
+                  <label for="start_date" class="text-muted font-weight-light">Select a start date:</label>
+                  <input type="date" name="start_date" id="start_date" class="form-control" placeholder="Start Date">
+                </div>
+                <div class="form-group">
+                  <label for="end_date" class="text-muted font-weight-light">Select an end date:</label>
+                  <input type="date" name="end_date" id="end_date" class="form-control" placeholder="End Date">
+                </div>
+                <button type="submit" class="btn btn-primary">Generate Report</button>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  
 </div>
 
   <div class="row">
@@ -234,127 +222,6 @@ Dashboard
 </div>
 
 
-{% comment %} <div class="row">
-  <div class="col-md-7 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <p class="card-title mb-0">Top Products</p>
-        <div class="table-responsive">
-          <table class="table table-hover">
-            <thead>
-              <tr>
-                <th>User</th>
-                <th>Product</th>
-                <th>Sale</th>
-                <th>Status</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Jacob</td>
-                <td>Photoshop</td>
-                <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                <td><label class="badge badge-danger">Pending</label></td>
-            </tr>
-            
-              <tr>
-                <td>Messsy</td>
-                <td>Flash</td>
-                <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                <td><label class="badge badge-warning">In progress</label></td>
-              </tr>
-              <tr>
-                <td>John</td>
-                <td>Premier</td>
-                <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                <td><label class="badge badge-info">Fixed</label></td>
-              </tr>
-              <tr>
-                <td>Peter</td>
-                <td>After effects</td>
-                <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                <td><label class="badge badge-success">Completed</label></td>
-              </tr>
-              <tr>
-                <td>Dave</td>
-                <td>53275535</td>
-                <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                <td><label class="badge badge-warning">In progress</label></td>
-              </tr>
-              <tr>
-                <td>Messsy</td>
-                <td>Flash</td>
-                <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                <td><label class="badge badge-info">Fixed</label></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="col-md-5 grid-margin stretch-card">
-    <div class="card">
-      <div class="card-body">
-        <h4 class="card-title">To Do Lists</h4>
-        <div class="list-wrapper pt-2">
-          <ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-            <li>
-              <div class="form-check form-check-flat">
-                <label class="form-check-label">
-                  <input class="checkbox" type="checkbox">
-                  Become A Travel Pro In One Easy Lesson
-                </label>
-              </div>
-              <i class="remove ti-trash"></i>
-            </li>
-            <li class="completed">
-              <div class="form-check form-check-flat">
-                <label class="form-check-label">
-                  <input class="checkbox" type="checkbox" checked>
-                  See The Unmatched Beauty Of The Great Lakes
-                </label>
-              </div>
-              <i class="remove ti-trash"></i>
-            </li>
-            <li>
-              <div class="form-check form-check-flat">
-                <label class="form-check-label">
-                  <input class="checkbox" type="checkbox">
-                  Copper Canyon
-                </label>
-              </div>
-              <i class="remove ti-trash"></i>
-            </li>
-            <li class="completed">
-              <div class="form-check form-check-flat">
-                <label class="form-check-label">
-                  <input class="checkbox" type="checkbox" checked>
-                  Top Things To See During A Holiday In Hong Kong
-                </label>
-              </div>
-              <i class="remove ti-trash"></i>
-            </li>
-            <li>
-              <div class="form-check form-check-flat">
-                <label class="form-check-label">
-                  <input class="checkbox" type="checkbox">
-                  Travelagent India
-                </label>
-              </div>
-              <i class="remove ti-trash"></i>
-            </li>
-          </ul>
-        </div>
-        <div class="add-items d-flex mb-0 mt-4">
-          <input type="text" class="form-control todo-list-input me-2"  placeholder="Add new task">
-          <button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="ti-location-arrow"></i></button>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> {% endcomment %}
-
 
 
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
@@ -466,55 +333,6 @@ Dashboard
  var order_counts = {{ order_counts|safe }};
  console.log(onlineData,offlineData,walletData)
 </script>
-
-
-
-
-{% comment %} <script>
-  var ctx = document.getElementById('myChart').getContext('2d');
-  var myChart
-  document.addEventListener('load', ()=>{
-    fetchSalesData('yearly');
-  })
-    function fetchSalesData(timeframe) {
-      $.ajax({
-        url: `sales_chart_data/${timeframe}`,
-        method: 'GET'
-      })
-      .then(data => {
-        renderChart(data)
-      })
-      .catch(err => {
-        console.log('Error :', err);
-      })
-    }
-
-    function renderChart(data) {
-        myChart.destory();
-        myChart = new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: data.labels,
-                datasets: [{
-                    label: 'Sales',
-                    data: data.data,
-                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                    borderColor: 'rgba(54, 162, 235, 1)',
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
-            }
-        });
-    }
-</script> {% endcomment %}
-
-
 {% endblock %}
 
 
