@@ -13,7 +13,5 @@ urlpatterns = [
     path("proceed_to_pay", views.razorpaychek),
     path("online_order", views.online_order, name="online_order"),
     path("failed_order", views.failed_order, name="failed_order"),
-    path("online_sucess/", views.online_sucess, name="online_sucess"),
-    # path('sales_chart_data/<str:timeframe>/', sales_chart_data, name='sales_chart_data'),
     path("address_check<int:id>/<int:a_id>", views.address_check, name="address_check"),
 ]

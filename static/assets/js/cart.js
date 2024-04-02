@@ -16,7 +16,6 @@ $(document).ready(function(){
             success: function (response) {
                 // $('#cart').load('cart_page')
                 if (response.status) {
-                    console.log('succes')
                   $('#cart1').load('/cart_page #cart')
                   
                 }

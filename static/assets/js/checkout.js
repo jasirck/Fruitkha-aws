@@ -21,9 +21,6 @@
             var state = $("input[name='state']").val();
             var pincode = $("input[name='pincode']").val();
             var csrfmiddlewaretoken = $("input[name='csrfmiddlewaretoken']").val();
-console.log(csrfmiddlewaretoken);
-            // console.log(name,number,email)
-     // console.log(name, number, email)
 
 
      var data
@@ -35,7 +32,6 @@ $.ajax({
         const orderId = response.order_id
         const totalAmount = response.total_price
         const csrf_token = csrfmiddlewaretoken
-        console.log('1', response,orderId);
         var options = {
             "key": "rzp_test_PCJ9PYp4rFSfTh",
             "amount": response.total_price * 100,
@@ -45,9 +41,6 @@ $.ajax({
             "image": "assets/img/favicon.png",
             "order_id": response.temp,
             "handler": function(response) {
-                console.log('2', response.total_price);
-                // alert(response.total_price);
-                console.log(options);
                  data = {
                     "payment_id": response.razorpay_payment_id,
                     "order_id":orderId,

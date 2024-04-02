@@ -45,13 +45,11 @@ def Cart(request):
 
 @login_required
 def add_cart(request, id):
-    print("add  cart   here  **88888**888*88*88")
     if request.method == "POST":
         username = request.user
         user_id = Customer.objects.get(username=username)
         quantity = request.POST.get("quantity")
         product_id = myprodect.objects.get(id=id)
-        print("dddd", user_id.id, "aaaaa", quantity, "quantity")
         offer = False
         amount = product_id.price
         if quantity.strip() is not None:
@@ -64,7 +62,6 @@ def add_cart(request, id):
                         or add.book_quantity > 10
                         or add.book_quantity < 0
                     ):
-                        print("2", product_id)
                         messages.success(request, "We did't have that much quantity")
                         return redirect("single_prodect", id)
 
@@ -80,7 +77,6 @@ def add_cart(request, id):
                         )
                         percentage = product.percentage
                         category = product_id.category
-                        print(category)
                         if Category_Offer.objects.filter(
                             category_id=category, is_active=True
                         ).exists():
@@ -94,7 +90,6 @@ def add_cart(request, id):
                         category_id=category, is_active=True
                     ).exists():
                         offer = True
-                        print(category)
                         category_instence = Category_Offer.objects.get(
                             category_id=category, is_active=True
                         )
@@ -114,7 +109,6 @@ def add_cart(request, id):
                     or int(quantity) > 10
                     or int(quantity) < 1
                 ):
-                    print("1", product_id)
                     messages.success(request, "We did't have that much quantity")
                     return redirect("single_prodect", id)
 
@@ -131,7 +125,6 @@ def add_cart(request, id):
                         )
                         percentage = product.percentage
                         category = product_id.category
-                        print(category)
                         if Category_Offer.objects.filter(
                             category_id=category, is_active=True
                         ).exists():
@@ -145,7 +138,6 @@ def add_cart(request, id):
                         category_id=category, is_active=True
                     ).exists():
                         offer = True
-                        print(category)
                         category_instence = Category_Offer.objects.get(
                             category_id=category, is_active=True
                         )
@@ -164,11 +156,9 @@ def add_cart(request, id):
                         current_price=amount,
                     )
                     cart_obj.save()
-                    print("1.1", product_id)
                     messages.success(request, "added to cart")
                     return redirect("single_prodect", id)  # ,'success.html'
             except ValueError:
-                print("3", product_id)
                 messages.success(request, "can not add without quantity")
                 return redirect("single_prodect", id)  # {'message': 'Invalid quantity'}
         else:
@@ -192,14 +182,12 @@ def quantity_cart(request):
         products_id = int(request.POST.get("products_id"))
         action = request.POST.get("action")
         item = cart.objects.get(id=products_id)
-        print("cart quantity")
         if action == "plus":
             item.book_quantity += 1
             if item.product_id.quantity < int(
                 item.book_quantity or int(item.book_quantity) > 10
             ):
                 messages.success(request, "We did't have that much quantity")
-                # return redirect('Cart')
                 return JsonResponse({"status": "updated suucessfully"})
         elif action == "minus":
             item.book_quantity -= 1
@@ -207,7 +195,6 @@ def quantity_cart(request):
                 item.book_quantity or int(item.book_quantity) > 10
             ):
                 messages.success(request, "We did't have that much quantity")
-                # return redirect('Cart')
                 return JsonResponse({"status": "updated suucessfully"})
 
         item.cart_total = item.current_price * item.book_quantity
@@ -222,8 +209,7 @@ def wishlist_page(request):
     user = Customer.objects.get(username=username)
     log = True
     wish = Wishlist.objects.filter(user_id=user)
-    # pri=
-    # print(wish)
+
     return render(request, "wishlist.html", {"log": log, "wishlist": wish})
 
 
@@ -242,7 +228,6 @@ def wishlist_new(request, id):
 
 @login_required
 def add_to_cart(request):
-    print("hello_wisddhfghxt")
     if request.method == "POST" and request.is_ajax():
         user = request.user
         user_id = Customer.objects.get(username=user)
@@ -250,11 +235,9 @@ def add_to_cart(request):
         product = myprodect.objects.get(id=product_id)
         offer = False
         amount = product.price
-        print(product_id)
         if cart.objects.filter(product_id=product).exists():
             add = cart.objects.get(product_id=product_id)
             add.book_quantity += 1
-            print("add to cart first one")
             messages.success(request, "added to cart")
             return JsonResponse({"success": True, "message": "Product added to cart."})
         else:
@@ -270,7 +253,6 @@ def add_to_cart(request):
                 )
                 percentage = product.percentage
                 category = product_id.category
-                print(category)
                 if Category_Offer.objects.filter(
                     category_id=category, is_active=True
                 ).exists():
@@ -284,7 +266,6 @@ def add_to_cart(request):
                 category_id=category, is_active=True
             ).exists():
                 offer = True
-                print(category)
                 category_instence = Category_Offer.objects.get(
                     category_id=category, is_active=True
                 )
@@ -301,15 +282,9 @@ def add_to_cart(request):
                 cart_total=1 * amount,
                 current_price=amount,
             )
-            print("add to cart first one")
             cart_obj.save()
-        print("1.1", product_id)
-        # messages.success(request, 'added to cart')
-        # return redirect("single_prodect",id)#,'success.html'
-        print("hello wish")
         return JsonResponse({"success": True, "message": "Product added to cart."})
     else:
-        print("hello wish else")
         return JsonResponse({"success": False, "message": "Invalid request"})
 
 def wishlist_remove(request):
@@ -318,10 +293,8 @@ def wishlist_remove(request):
         username = Customer.objects.get(username=user)
         product_id = request.POST.get("product_id")
         product = myprodect.objects.get(id=product_id)
-        print(product_id)
         remove = Wishlist.objects.filter(user_id=username, product_id=product)
         remove.delete(  )
         return JsonResponse({"success": True, "message": "Product Removed."})
     else:
-        print("hello wish else")
         return JsonResponse({"success": False, "message": "Invalid request"})
