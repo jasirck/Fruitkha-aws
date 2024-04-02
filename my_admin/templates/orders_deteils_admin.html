@@ -1,0 +1,55 @@
+{% extends "admin_base.html" %}
+{% load static %}
+{% block title %} 
+Order Deteils
+{% endblock %}
+{% block style %} 
+<link rel="stylesheet" href="{% static "assets/css/manage_new.css" %}">
+{% endblock %}
+{% block page_name %} 
+Order Deteils
+{% endblock %}
+{% block content %} 
+<div class='row' >
+  <div class="col-md-5 grid-margin add-stretch-card">
+    <table id="customers" border="1">
+      <thead>
+          <th>Image</th>
+          <th>Product Name</th>
+          <th>Price</th>
+          <th>Quantity</th>
+          <th></th>
+          {% comment %} <th colspan="2" id="mid">Action</th> {% endcomment %}
+      </thead>
+      <tbody>
+      {% for x in order_item %} 
+      <tr>
+        <td> {% if x.product.prodect_image1 %} <img class="square-50" src=" {{x.product.prodect_image1.url}}" alt="">{% endif %}</td> 
+        <td>{{x.product.prodect_name}}</td>  
+        <td>{{x.price_now}}</td>
+        <td>{{x.quantity_now}} ₹</td>
+        <td></td>
+          
+          
+      </tr>
+      {% endfor %} 
+      <tr style="line-height: 50px; font-weight: 600;">
+        <td> </td>
+        <td>Total</td>
+        <td>{{order.total_price}}</td>
+        <td></td>
+        {% if order.status == 'Ordered' or  order.status == 'Pending' %}<td style="line-height: 20px;"><a href="orders_deliverd{{order.id}}"><button id="up">Deliverd</button></a> <a href="orders_cancel{{order.id}}" style="line-height: 20px;"><button id="del">Cancel</button></a></td>{% endif %}
+        {% if order.status == 'Return Requested' %} <td style="line-height: 20px;"><a href="return_accept{{order.id}}"><button id="up">Return Accept</button></a>  {% endif %}
+        
+      </tr>
+    </tbody>
+  </table>
+
+  </div>
+</div>
+
+
+{% endblock %}
+
+
+
