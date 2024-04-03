@@ -44,16 +44,8 @@ def add_product_offer(request):
                 end_date=expiration_time,
             )
             messages.info(request, "Offer Created")
-            return render(
-                request,
-                "add_product_offer.html",
-                {
-                    "product": product_all,
-                    "users": count,
-                    "pro": count_pro,
-                    "ord": order_count,
-                },
-            )  #
+            return redirect('product_offer')
+          #
     except Exception as e:
         messages.info(request, "somthig error!")
         return render(
