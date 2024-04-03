@@ -89,7 +89,6 @@
                 <th>Variant</th>
                 <th>Order Status</th>
                 <th>Payment Method</th>
-                <th>Coupon</th>
                 <th>Price</th>
                 <th>Discount</th>
                 <th>Offer Price</th>
@@ -100,17 +99,13 @@
             <tr>
                 <td>{{ sale.order_item.created }}</td>
                 <td>{{ sale.order_item.user.username }}</td>
-                <td class="address-cell">{{ sale.order_item.address }}</td>
+                <td class="address-cell">{% for i in sale.order_item.address %} {{i}} {% endfor %}</td>
                 <td>{{ sale.product }}</td>
                 <td>{{ sale.product.category }}</td>
                 <td>{{ sale.product.variant }}</td>
                 <td>{{ sale.order_item.status }}</td>
                 <td>{{ sale.order_item.payment_method }}</td>
-                {% if  sale.order_item.coupon_id is null %}
-                <td>Coupon Not Aply</td>
-                {% else %}
-                <td>{{sale.order_item.coupon_id }}</td>
-                {% endif %}
+                
                 <td>{{ sale.product.price }}</td>
                 <td>{{ sale.dis }}</td>
                 <td>{{ sale.price_now }}</td>
