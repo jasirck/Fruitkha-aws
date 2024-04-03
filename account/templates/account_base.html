@@ -40,7 +40,7 @@
                     {% if user.user_dp %}
                     <img style="border-radius: 5rem; width: 50px; height: 50px;" src="{{ user.user_dp}}" alt="ibb">
                       {% else %}
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="user avatar" />
+                      <img style="border-radius: 5rem; width: 50px; height: 50px;" src="{{ user.user_dp}}.url" alt="ibb">
                     {% endif %} 
                 </div>
                 <h5 class="mb-1 text-white">{{user.username}}</h5>
