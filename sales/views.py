@@ -10,7 +10,7 @@ from django.db.models import Sum
 from django.http import JsonResponse
 
 
-# @admin_required
+@admin_required
 def sales_report(request):
     if request.method == "POST":
         filter = request.POST.get("filter")
@@ -62,7 +62,7 @@ def sales_report(request):
         return redirect("dashboard")
 
 
-# @admin_required
+@admin_required
 def generate_pdf(request):
     html_content = request.POST.get("html_content")
     response = HttpResponse(content_type="application/pdf")
