@@ -45,17 +45,18 @@ def sales_report(request):
                 order_item__status__in=["Deliverd", "Return Requested"],
                 order_item__created__range=[start_date, end_date],
             )
+        address = sales.order_item.address.split(",")
 
         for sale in sales:
             dis = sale.product.price - sale.price_now
             setattr(sale, "dis", dis)
 
-        context = {"sales": sales}
+        context = {"address":address,"sales": sales}
         html_content = render(request, "report.html", context).content.decode("utf-8")
         return render(
             request,
             "report.html",
-            {"html_content": html_content, "sales": sales, "pdf": True},
+            {"html_content": html_content, "address":address,"sales": sales, "pdf": True},
         )
     else:
         # Handle other HTTP methods if needed

@@ -99,7 +99,7 @@
             <tr>
                 <td>{{ sale.order_item.created }}</td>
                 <td>{{ sale.order_item.user.username }}</td>
-                <td class="address-cell">{% for i in sale.order_item.address %} {{i}} {% endfor %}</td>
+                <td class="address-cell">{% for i in address %} {{i}} {% endfor %}</td>
                 <td>{{ sale.product }}</td>
                 <td>{{ sale.product.category }}</td>
                 <td>{{ sale.product.variant }}</td>
