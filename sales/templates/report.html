@@ -99,9 +99,7 @@
             <tr>
                 <td>{{ sale.order_item.created }}</td>
                 <td>{{ sale.order_item.user.username }}</td>
-                {% for part in sale.order_item.address.split(",") %}
-                 {{ part }}
-                {% endfor %}
+                <td class="address-cell">{{ sale.order_item.address }}</td>
                 <td>{{ sale.product }}</td>
                 <td>{{ sale.product.category }}</td>
                 <td>{{ sale.product.variant }}</td>
