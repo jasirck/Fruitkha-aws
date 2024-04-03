@@ -10,9 +10,7 @@ from django.db.models import Sum
 from django.http import JsonResponse
 
 
-# @admin_required
-def sales_report(request):
-    if request.method == "POST":
+
         filter = request.POST.get("filter")
         if filter == "fixed":
             interval = request.POST.get("interval")
@@ -45,20 +43,17 @@ def sales_report(request):
                 order_item__status__in=["Deliverd", "Return Requested"],
                 order_item__created__range=[start_date, end_date],
             )
-        addresses = []
+z
         for sale in sales:
-            addresses.extend(sale.order_item__address.split(","))
-
-        for sale in sales:
-            dis = sale.product.price - sale.price_now
+            dis = sale.product.price - sale.price_now-
             setattr(sale, "dis", dis)
 
-        context = {"address":addresses,"sales": sales}
+        context = {"sales": sales}
         html_content = render(request, "report.html", context).content.decode("utf-8")
         return render(
             request,
             "report.html",
-            {"html_content": html_content, "address":addresses,"sales": sales, "pdf": True},
+            {"html_content": html_content, "sales": sales, "pdf": True},
         )
     else:
         # Handle other HTTP methods if needed
