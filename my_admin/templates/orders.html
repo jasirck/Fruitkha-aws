@@ -27,7 +27,7 @@ Orders
       <tr>
         <td> {% if x.user.user_dp %} <img class="square-50" src=" {{x.user.user_dp}}" alt="{{x.user.user_dp}}">
           {% else %}
-          <td> {% if x.user.user_dp %} <img class="square-50" src=" {{x.user.user_dp}}.url" alt="{{x.user.user_dp}}">
+          <td> {% if x.user.user_dp %} <img class="square-50" src=" {{x.user.user_dp.url }}" alt="{{x.user.user_dp}}">
           {% endif %}</td> 
         <td>{{x.order_id}}</td>  
         <td>{{x.user.username}}</td>
