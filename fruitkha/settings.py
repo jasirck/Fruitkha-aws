@@ -30,7 +30,7 @@ DEBUG = False
 handler404 = 'homepage.views.custom_404'
 handler500 = 'homepage.views.custom_500'
 
-ALLOWED_HOSTS = ['example.com', 'www.example.com', '127.0.0.1']
+ALLOWED_HOSTS = ['13.53.216.126','0.0.0.0','example.com', 'www.example.com', '127.0.0.1']
 
 
 # Application definition
@@ -96,10 +96,10 @@ WSGI_APPLICATION = "fruitkha.wsgi.application"
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "website",
+        "NAME": "jasir",
         "HOST": "localhost",
         "PORT": "5432",
-        "USER": "postgres",
+        "USER": "fruitkha",
         "PASSWORD": "1234",
     }
 }
