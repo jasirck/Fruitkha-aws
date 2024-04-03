@@ -58,7 +58,7 @@ def sales_report(request):
         return render(
             request,
             "report.html",
-            {"html_content": html_content, "address":address,"sales": sales, "pdf": True},
+            {"html_content": html_content, "address":addresses,"sales": sales, "pdf": True},
         )
     else:
         # Handle other HTTP methods if needed
