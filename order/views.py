@@ -431,14 +431,14 @@ def wallet_order(request):
             new_subtotal = subtotal
             new_subtotal -= coupon_discount
             total = new_subtotal + shipping
-        ord = order(
-            user=user_obj,
-            total_price=total,
-            payment_method="Wallet",
-            order_id=temp,
-            address=address_text,
-            coupon_id=coupon_id,
-        )
+            ord = order(
+                user=user_obj,
+                total_price=total,
+                payment_method="Wallet",
+                order_id=temp,
+                address=address_text,
+                coupon_id=coupon_id,
+            )
         ord.save()
         wallet = Wallet.objects.get(user_id=user_obj)
         wallet.amount -= total
