@@ -439,6 +439,14 @@ def wallet_order(request):
                 address=address_text,
                 coupon_id=coupon_id,
             )
+        else:
+            ord = order(
+                user=user_obj,
+                total_price=total,
+                payment_method="COD",
+                order_id=temp,
+                address=address_text,
+            )
         ord.save()
         wallet = Wallet.objects.get(user_id=user_obj)
         wallet.amount -= total
