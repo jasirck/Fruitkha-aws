@@ -32,17 +32,6 @@ handler500 = 'homepage.views.custom_500'
 
 ALLOWED_HOSTS = ['13.53.216.126','0.0.0.0','example.com', 'www.example.com', '127.0.0.1']
 
-SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
-
-
-CSRF_TRUSTED_ORIGINS = [
-    "http://13.53.216.126",
-    "https://13.53.216.126",
-    "http://0.0.0.0",
-    "https://0.0.0.0",
-    "http://0.0.0.0:9090",
-]
-
 
 # Application definition
 
@@ -148,26 +137,6 @@ TIME_ZONE = "UTC"
 USE_I18N = True
 
 USE_TZ = True
-
-
-CORS_ALLOWED_ORIGINS = [
-    "http://13.53.216.126",
-    "https://13.53.216.126",
-    "http://0.0.0.0",
-    "https://0.0.0.0",
-    "http://0.0.0.0:9090",
-]
-
-CORS_ALLOW_HEADERS = [
-    "access-control-allow-headers",
-    "access-control-allow-methods",
-    "access-control-allow-origin",
-    "content-type",
-    "x-csrftoken",
-]
-
-CORS_ALLOW_METHODS = ["DELETE", "GET", "OPTIONS", "PATCH", "POST", "PUT"]
-
 
 
 EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
