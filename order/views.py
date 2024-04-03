@@ -424,6 +424,8 @@ def wallet_order(request):
             temp = "fruitkha" + str(random.randint(111111, 999999))
         address_text = f"{user_obj.current_address.name},{user_obj.current_address.call_number},{user_obj.current_address.house_name},{user_obj.current_address.lanmark},{user_obj.current_address.post},{user_obj.current_address.city},{user_obj.current_address.state},{user_obj.current_address.pincode}"
         coupon_code = request.session.get("coupon_code")
+        ord = None  # Define ord with a default value
+
         if coupon_code:
             coupon = True
             coupon_id = Coupon.objects.get(code=coupon_code.strip())
@@ -432,22 +434,23 @@ def wallet_order(request):
             new_subtotal -= coupon_discount
             total = new_subtotal + shipping
             ord = order(
-            user=user_obj,
-            total_price=total,
-            payment_method="Wallet",
-            order_id=temp,
-            address=address_text,
-            coupon_id=coupon_id,
+                user=user_obj,
+                total_price=total,
+                payment_method="Wallet",
+                order_id=temp,
+                address=address_text,
+                coupon_id=coupon_id,
             )
         else:
+            total = subtotal + shipping
             ord = order(
-            user=user_obj,
-            total_price=total,
-            payment_method="COD",
-            order_id=temp,
-            address=address_text
+                user=user_obj,
+                total_price=total,
+                payment_method="Wallet",
+                order_id=temp,
+                address=address_text
             )
-        ord.save()
+        ord.save()  
         wallet = Wallet.objects.get(user_id=user_obj)
         wallet.amount -= total
         wallet.save()
