@@ -10,7 +10,7 @@ from django.db.models import Sum
 from django.http import JsonResponse
 
 
-@admin_required
+# @admin_required
 def sales_report(request):
     if request.method == "POST":
         filter = request.POST.get("filter")
