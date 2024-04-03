@@ -152,6 +152,7 @@ def coupon_edit(request, id):
             coupon.save()
             messages.info(request, "Coupon Edited")
             return redirect("coupon")
+        return render(request, "coupon_edit.html", {"coupon": coupon})
 
     except Exception as e:
        return render(request, "coupon_edit.html", {"coupon": coupon})
