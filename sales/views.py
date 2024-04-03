@@ -10,7 +10,9 @@ from django.db.models import Sum
 from django.http import JsonResponse
 
 
-
+@admin_required
+def sales_report(request):
+    if request.method == "POST":
         filter = request.POST.get("filter")
         if filter == "fixed":
             interval = request.POST.get("interval")
@@ -43,9 +45,9 @@ from django.http import JsonResponse
                 order_item__status__in=["Deliverd", "Return Requested"],
                 order_item__created__range=[start_date, end_date],
             )
-z
+
         for sale in sales:
-            dis = sale.product.price - sale.price_now-
+            dis = sale.product.price - sale.price_now
             setattr(sale, "dis", dis)
 
         context = {"sales": sales}
