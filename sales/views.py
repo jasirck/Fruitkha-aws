@@ -53,7 +53,7 @@ def sales_report(request):
             dis = sale.product.price - sale.price_now
             setattr(sale, "dis", dis)
 
-        context = {"address":address,"sales": sales}
+        context = {"address":addresses,"sales": sales}
         html_content = render(request, "report.html", context).content.decode("utf-8")
         return render(
             request,
