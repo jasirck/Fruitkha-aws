@@ -49,7 +49,6 @@ def sales_report(request):
         for sale in sales:
             addresses.extend(sale.address.split(","))
         addresses = [address for sale in sales for address in sale.address.split(",")]
-        address = sales.address.split(",")
 
         for sale in sales:
             dis = sale.product.price - sale.price_now
