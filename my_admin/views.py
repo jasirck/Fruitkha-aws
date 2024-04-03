@@ -487,7 +487,7 @@ def orders(request):
     )
 
 
-@admin_required
+admin_required
 def orders_deteils(request, id):
     ord = order.objects.get(id=id)
     products = order_items.objects.filter(order_item=id)
