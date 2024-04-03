@@ -14,7 +14,7 @@ Management
   <div class="col-md-5 grid-margin add-stretch-card">
     <table id="customers" border="1">
       <thead>
-          <th>DP</th>
+          {% comment %} <th>DP</th> {% endcomment %}
           <th>Username</th>
           <th>Email</th>
           <th>Number</th>
@@ -23,7 +23,7 @@ Management
       </thead>
       {% for x in user %}
       <tr>
-          <td><img style="width:50px; height:50px; border-radius: 50px;" src="{{x.user_dp}}" alt=""></td>
+          {% comment %} <td><img style="width:50px; height:50px; border-radius: 50px;" src="{{x.user_dp}}" alt=""></td> {% endcomment %}
           <td>{{x.username}}</td>
           <td>{{x.email}}</td>
           <td>{{x.customer_number}}</td>

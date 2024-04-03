@@ -14,7 +14,7 @@ Orders
   <div class="col-md-5 grid-margin add-stretch-card">
     <table id="customers" border="1">
       <thead>
-          <th>DP</th>
+          {% comment %} <th>DP</th> {% endcomment %}
           <th>Order ID</th>
           <th>Name</th>
           <th>Price</th>
@@ -25,10 +25,10 @@ Orders
       </thead>
       {% for x in order %} 
       <tr>
-        <td> {% if x.user.user_dp %} <img class="square-50" src=" {{x.user.user_dp.url }}" alt="">
+        {% comment %} <td> {% if x.user.user_dp %} <img class="square-50" src=" {{x.user.user_dp.url }}" alt="">
           {% else %}
         <img class="square-50" src=" {{x.user.user_dp.url }}" alt="">
-        {% endif %}</td> 
+        {% endif %}</td>  {% endcomment %}
         <td>{{x.order_id}}</td>  
         <td>{{x.user.username}}</td>
           <td>{{x.total_price}} ₹</td>
