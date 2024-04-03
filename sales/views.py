@@ -45,6 +45,10 @@ def sales_report(request):
                 order_item__status__in=["Deliverd", "Return Requested"],
                 order_item__created__range=[start_date, end_date],
             )
+            addresses = []
+        for sale in sales:
+            addresses.extend(sale.address.split(","))
+        addresses = [address for sale in sales for address in sale.address.split(",")]
         address = sales.address.split(",")
 
         for sale in sales:
