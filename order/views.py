@@ -89,23 +89,26 @@ def checkout(request):
 @login_required
 def chenge(request, id):
     if request.user.is_authenticated:
-        user_obj = Customer.objects.get(id=id)
-        address = user_address.objects.filter(user_id=user_obj.id)
-        test = False
-        if not address.exists():
-            test = True
-        if request.method == "POST":
-            address = request.POST.get("address")
-            add = user_address.objects.get(id=address)
-            user_id = Customer.objects.get(id=id)
-            user_id.current_address = add
-            user_id.save()
+        try:
+            user_obj = Customer.objects.get(id=id)
+            address = user_address.objects.filter(user_id=user_obj.id)
+            test = False
+            if not address.exists():
+                test = True
+            if request.method == "POST":
+                address = request.POST.get("address")
+                add = user_address.objects.get(id=address)
+                user_id = Customer.objects.get(id=id)
+                user_id.current_address = add
+                user_id.save()
+                return redirect("checkout")
+            return render(
+                request,
+                "chenge.html",
+                {"user": user_obj, "address": address, "test": test, "check": True},
+            )
+        except:
             return redirect("checkout")
-        return render(
-            request,
-            "chenge.html",
-            {"user": user_obj, "address": address, "test": test, "check": True},
-        )
     return render(request, "login.html")
 
 

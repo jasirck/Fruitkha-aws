@@ -33,7 +33,9 @@ body {
   }
   .detail:hover{
     border-bottom: 2px solid #cdcdcd;
-    background-color: rgb(100, 199, 238);
+    -webkit-box-shadow: 18px 18px 13px -12px rgba(0,0,0,0.87);
+    -moz-box-shadow: 18px 18px 13px -12px rgba(0,0,0,0.87);
+    box-shadow: 18px 18px 13px -12px rgba(0,0,0,0.87);
     border-radius: 20px;
   }
   .detail_add{

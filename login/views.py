@@ -229,5 +229,4 @@ def logout_user(request):
     user.action = "Logout"
     user.save()
     logout(request)
-    messages.info(request, "Logout")
     return redirect("login_view")
