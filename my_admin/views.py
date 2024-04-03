@@ -494,11 +494,13 @@ def orders_deteils(request, id):
     count = Customer.objects.count()
     count_pro = myprodect.objects.count()
     order_count = order.objects.count()
+    address = ord.address.split(",")
     return render(
         request,
         "orders_deteils_admin.html",
         {
             "order": ord,
+            "address": address,
             "order_item": products,
             "users": count,
             "pro": count_pro,

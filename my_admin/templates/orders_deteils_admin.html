@@ -132,19 +132,19 @@ Order Deteils
           <div class="detail-title">Order Details</div>
           <div class="detail-info">
               <small>Payment Method:</small>
-              <span>{{ ord.payment_method }}</span>
+              <span>{{ order.payment_method }}</span>
           </div>
           <div class="detail-info">
               <small>Order Date:</small>
-              <span>{{ ord.created }}</span>
+              <span>{{ order.created }}</span>
           </div>
           <div class="detail-info">
               <small>Expected Delivery:</small>
-              <span>{{ ord.expect }}</span>
+              <span>{{ order.expect }}</span>
           </div>
           <div class="detail-info">
               <small>Status:</small>
-              <span class="{% if ord.status == 'Deliverd' %}status-delivered{% elif ord.status == 'Pending' or ord.status == 'Return Requested' %}status-pending{% else %}status-other{% endif %}">{{ ord.status }}</span>
+              <span class="{% if order.status == 'Deliverd' %}status-delivered{% elif order.status == 'Pending' or order.status == 'Return Requested' %}status-pending{% else %}status-other{% endif %}">{{ order.status }}</span>
           </div>
           <div class="detail-info">
               <small>Delivery Address:</small>
