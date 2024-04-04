@@ -28,11 +28,9 @@ def admin_required(view_func):
                 return view_func(request, *args, **kwargs)
             else:
                 logout(request)
-                messages.info(request, "your logout")
                 return redirect(reverse("admin_login"))
         except:
             logout(request)
-            messages.info(request, "your logout")
             return redirect(reverse("admin_login"))
 
     return _wrapped_view
