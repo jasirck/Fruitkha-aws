@@ -230,7 +230,7 @@ def add_prodect(request):
             )
             add.save()
             messages.success(request, "added prodect")
-            return redirect("add_prodect")
+            return redirect("edit_prodect")
         except:
             messages.success(request, "prodect takin awey")
             return redirect("add_prodect")
@@ -275,7 +275,7 @@ def category(request):
         )
         category_obj.save()
         messages.success(request, "category aded")
-        return redirect("category")  # Redirect to a success page
+        return redirect("edit_category")  # Redirect to a success page
     return render(
         request, "category.html", {"users": count, "pro": count_pro, "ord": order_count}
     )

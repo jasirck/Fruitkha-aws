@@ -319,7 +319,7 @@ def online_order(request):
             coupon = True
             coupon_id = Coupon.objects.get(code=coupon_code.strip())
             # del request.session['coupon_code']
-
+        
         return JsonResponse({"status": "Your Order Placed Succesfully"})
     return redirect("login")
 
@@ -386,6 +386,8 @@ def failed_order(request):
                     coupon = True
                     coupon_id = Coupon.objects.get(code=coupon_code.strip())
                     # del request.session['coupon_code']
+                if "coupon_code" in request.session:
+                    del request.session["coupon_code"]
 
                 return JsonResponse({"status": "Order Failed"})
         except json.JSONDecodeError as e:
@@ -470,6 +472,9 @@ def wallet_order(request):
             ord_it.save()
         cart_obj.delete()
         log = True
+        if "coupon_code" in request.session:
+            del request.session["coupon_code"]
+
         return render(
             request, "order_succes.html", {"log": log, "order_id": temp, "total": total}
         )
