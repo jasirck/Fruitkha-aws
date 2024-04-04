@@ -238,6 +238,7 @@ def add_to_cart(request):
         if cart.objects.filter(product_id=product).exists():
             add = cart.objects.get(product_id=product_id)
             add.book_quantity += 1
+            add.save()
             messages.success(request, "added to cart")
             return JsonResponse({"success": True, "message": "Product added to cart."})
         else:
