@@ -297,7 +297,7 @@ def detail_page(request, id):
             temp = myprodect.objects.get(id=temp_id)
             temp.quantity += i.quantity_now
             temp.save()
-        if ord.payment_method == "Online":
+        if ord.payment_method in ["Online", "Wallet"]:
             if Wallet.objects.filter(user_id=user_obj.id).exists():
                 wallet_instance = Wallet.objects.get(user_id=user_obj.id)
                 wallet_instance.amount += ord.total_price

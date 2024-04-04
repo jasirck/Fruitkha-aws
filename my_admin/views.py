@@ -531,12 +531,35 @@ def orders_cancel(request, id):
     block.status = "Cancel"
     block.msg = "admin Cancel"
     block.save()
+    username = request.user
+    user_obj = Customer.objects.get(username=username)
     readd = order_items.objects.filter(order_item=block.id)
     for i in readd:
         temp_id = i.product.id
         temp = myprodect.objects.get(id=temp_id)
         temp.quantity += i.quantity_now
         temp.save()
+    if ord.payment_method in ["Online", "Wallet"]:
+        if Wallet.objects.filter(user_id=user_obj).exists():
+            wallet_instance = Wallet.objects.get(user_id=user_obj)
+            wallet_instance.amount += ord.total_price
+            wallet_instance.save()
+            Wallet_list.objects.create(
+                wallet=wallet_instance,
+                is_credit=True,
+                amount=ord.total_price,
+                msg="Order Canceled",
+            )
+        else:
+            new_wallet = Wallet.objects.create(
+                user_id=user_obj, amount=ord.total_price
+            )
+            Wallet_list.objects.create(
+                wallet=new_wallet,
+                is_credit=True,
+                amount=ord.total_price,
+                msg="Order Canceled",
+            )
     return redirect("orders_deteils", id)
 
 
