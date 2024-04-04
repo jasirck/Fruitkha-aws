@@ -528,6 +528,7 @@ def orders_deliverd(request, id):
 @admin_required
 def orders_cancel(request, id):
     block = order.objects.get(id=id)
+    ord = order.objects.get(id=id)
     block.status = "Cancel"
     block.msg = "admin Cancel"
     block.save()
@@ -560,6 +561,7 @@ def orders_cancel(request, id):
                 amount=ord.total_price,
                 msg="Order Canceled",
             )
+        return redirect("orders_deteils", id)
     return redirect("orders_deteils", id)
 
 
