@@ -152,7 +152,7 @@ def dashbord(request):
 
     top_products = (
         myprodect.objects.filter(
-            order_items__order_item__status__in=["Delivered", "Return Requested"]
+            order_items__order_item__status__in=["Deliverd", "Return Requested"]
         )
         .annotate(num_orders=Count("order_items"))
         .order_by("-num_orders")[:10]
