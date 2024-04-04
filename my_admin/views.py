@@ -136,7 +136,7 @@ def dashbord(request):
     sale = wallet + offline + online
 
     monthly_delivered_orders = (
-        order.objects.filter(Q(status="Delivered") | Q(status="Return Requested"))
+        order.objects.filter(Q(status="Deliverd") | Q(status="Return Requested"))
         .annotate(month=TruncMonth("created"))
         .values("month")
         .annotate(order_count=Coalesce(Count("id"), 0))
