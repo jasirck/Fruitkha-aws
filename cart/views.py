@@ -235,7 +235,7 @@ def add_to_cart(request):
         product = myprodect.objects.get(id=product_id)
         offer = False
         amount = product.price
-        if cart.objects.filter(product_id=product).exists():
+        if cart.objects.filter(product_id=product,user_id=user_id).exists():
             add = cart.objects.get(product_id=product_id)
             add.book_quantity += 1
             add.save()
