@@ -237,29 +237,31 @@
 
 			</div> {% endcomment %}
 
-    <div class="row">
-        {% for product in main_category %}
-            <div class="col-lg-4 col-md-6 text-center">
-                <div class="single-product-item">
-                    <div class="product-image">
-                        {% if product.category_image %}
-						    <a href="/shop_cat{{ product.id }}/">
-                                <img style="width:100px ; height:110px;" src="{{ product.category_image.url }}" alt="">
-							</a>
-                        {% endif %}
-                        
-                    </div>
-                    <h3>{{ product.name }}</h3>
-                    {% if product_percentage %}
-                        <p class="product-price">{{ product_percentage}}% OFFER</p>
-                    {% else %}
-                        <p class="product-price">No Offer</p>
-                    {% endif %}
-                <a href="shop" class="cart-btn"><i class="fas fa-shopping-cart"></i>
-                </div>
-            </div>
-		{% endfor %}
-    </div>
+			<div class="row">
+				{% for product in main_category %}
+					<div class="col-lg-4 col-md-6 text-center">
+						<div class="single-product-item">
+							<div class="product-image">
+								{% if product.category_image %}
+									<a href="/shop_cat{{ product.id }}/">
+										<img style="width:100px; height:110px;" src="{{ product.category_image.url }}" alt="">
+									</a>
+								{% endif %}
+							</div>
+							<h3>{{ product.name }}</h3>
+							{% with product.category_offer.percentage as product_percentage %}
+								{% if product_percentage %}
+									<p class="product-price">{{ product_percentage }}% OFFER</p>
+								{% else %}
+									<p class="product-price">No Offer</p>
+								{% endif %}
+							{% endwith %}
+							<a href="shop" class="cart-btn"><i class="fas fa-shopping-cart"></i> Show Me</a>
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			
 
 		</div>
 	</div>
