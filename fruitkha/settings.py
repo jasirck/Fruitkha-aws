@@ -24,7 +24,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = "django-insecure-a2veev3s#9fdg!dhm272g^qg=0g&8)omu2m@o)td$6254uo7&_"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 # settings.py
 handler404 = 'homepage.views.custom_404'
