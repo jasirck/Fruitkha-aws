@@ -250,13 +250,11 @@
                         
                     </div>
                     <h3>{{ product.name }}</h3>
-                {% with product.category_offer.percentage as product_percentage %}
                     {% if product_percentage %}
-                        <p class="product-price">{{ product_percentage }}% OFFER</p>
+                        <p class="product-price">{{ product_percentage}}% OFFER</p>
                     {% else %}
                         <p class="product-price">No Offer</p>
                     {% endif %}
-                {% endwith %}
                 <a href="shop" class="cart-btn"><i class="fas fa-shopping-cart"></i>
                 </div>
             </div>
