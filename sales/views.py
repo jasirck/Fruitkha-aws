@@ -2,12 +2,10 @@ from django.shortcuts import render, redirect
 from my_admin.views import admin_required
 from django.http import HttpResponse
 from xhtml2pdf import pisa
-from order.models import order_items, order
+from order.models import order_items
 from datetime import datetime, timedelta
 from io import BytesIO
 import pandas as pd
-from django.db.models import Sum
-from django.http import JsonResponse
 
 
 @admin_required

@@ -6,12 +6,10 @@ from django.db.models import Sum
 from order.models import order, order_items
 import random
 from django.http import JsonResponse
-from django.http import HttpResponse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from wallet.models import Wallet, Wallet_list
 from coupon.models import Coupon
-from django.views.decorators.csrf import csrf_exempt
 import json
 
 
@@ -390,7 +388,7 @@ def failed_order(request):
                     del request.session["coupon_code"]
 
                 return JsonResponse({"status": "Order Failed"})
-        except json.JSONDecodeError as e:
+        except json.JSONDecodeError:
             # Handle JSON decoding error
             return JsonResponse({"status": "error", "message": "Invalid JSON data"})
     else:

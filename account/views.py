@@ -8,14 +8,13 @@ from django.utils import timezone
 from datetime import datetime
 from my_admin.models import myprodect
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_protect, csrf_exempt
+from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.contrib.auth.hashers import check_password
 from wallet.models import Wallet, Wallet_list
 from coupon.models import Coupon
 from offer.models import Referral
 from django.http import HttpResponse
-from django.template.loader import render_to_string
 from xhtml2pdf import pisa  # Import the library for PDF generation
 
 

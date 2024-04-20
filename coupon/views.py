@@ -45,7 +45,7 @@ def add_coupon(request):
             )
             messages.info(request, "Coupon Created")
             return redirect("coupon")
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthig error!")
         return render(
             request,
@@ -69,7 +69,7 @@ def coupon_action(request, id):
             active.active = True
         active.save()
         return redirect("coupon")
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthing Error")
         return redirect("coupon")
 
@@ -154,5 +154,5 @@ def coupon_edit(request, id):
             return redirect("coupon")
         return render(request, "coupon_edit.html", {"coupon": coupon})
 
-    except Exception as e:
+    except Exception:
        return render(request, "coupon_edit.html", {"coupon": coupon})

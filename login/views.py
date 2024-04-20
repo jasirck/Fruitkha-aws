@@ -172,7 +172,7 @@ def register(request):
                     del request.session["user_email"]
                     messages.success(request, "User registered")
                     return redirect("login_view")  # Redirect to a success page\
-                except Exception as e:
+                except Exception:
                     messages.info(request, "somthig error!")
                     return redirect("register")
         else:

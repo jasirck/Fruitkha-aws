@@ -46,7 +46,7 @@ def add_product_offer(request):
             messages.info(request, "Offer Created")
             return redirect('product_offer')
           #
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthig error!")
         return render(
             request,
@@ -90,7 +90,7 @@ def product_offer_action(request, id):
             active.is_active = True
         active.save()
         return redirect("product_offer")
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthing Error")
         return redirect("product_offer")
 
@@ -113,7 +113,7 @@ def edit_product_offer(request, id):
             product.save()
             messages.info(request, "Offer edited")
             return redirect("product_offer")  #
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthig error!")
         return render(request, "edit_product_offer.html", {"all": all})
     return render(request, "edit_product_offer.html", {"all": all})
@@ -152,7 +152,7 @@ def add_category_offer(request):
             )
             messages.info(request, "Offer Created")
             return redirect("category_offer")  #
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthig error!")
         return render(
             request,
@@ -200,7 +200,7 @@ def category_offer_action(request, id):
             active.is_active = True
         active.save()
         return redirect("category_offer")
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthing Error")
         return redirect("category_offer")
 
@@ -222,7 +222,7 @@ def edit_category_offer(request, id):
             product.save()
             messages.info(request, "Offer edited")
             return redirect("category_offer")  #
-    except Exception as e:
+    except Exception:
         messages.info(request, "somthig error!")
         return render(request, "edit_category_offer.html", {"all": all})
     return render(request, "edit_category_offer.html", {"all": all})

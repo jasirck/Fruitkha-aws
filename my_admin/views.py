@@ -13,7 +13,6 @@ from django.db.models import Q, Sum
 from django.db.models import Count
 import datetime
 from django.db.models.functions import TruncMonth, TruncYear
-import datetime
 from django.utils.timezone import now
 from django.db.models.functions import TruncDay
 from django.db.models.functions import Coalesce
