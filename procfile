@@ -1,0 +1,1 @@
+web: gunicorn fruitkha.wsgi --log-file -
