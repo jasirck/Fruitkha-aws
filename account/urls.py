@@ -13,7 +13,6 @@ urlpatterns = [
     ),
     path("add_address", views.add_address, name="add_address"),
     path("current_address<int:id>", views.current_address, name="current_address"),
-    path("edit_user<int:id>", views.edit_user, name="edit_user"),
     path("chenge_password", views.chenge_password, name="chenge_password"),
     path("chenge_email", views.chenge_email, name="chenge_email"),
     path(
